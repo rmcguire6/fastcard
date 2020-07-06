@@ -1,7 +1,6 @@
 import React from 'react';
-import Match from './components/Match'
-import './App.css';
-
+import Match from './Match'
+import '../App.css'
 function App() {
   return (
     <div className="App">
