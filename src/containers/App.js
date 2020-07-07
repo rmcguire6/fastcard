@@ -1,9 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Match from './Match'
 import VerbsContext from '../context/verbs-context'
+import words from '../fixtures/words'
 import '../App.css'
 function App() {
   const [verbs, setVerbs] = useState([])
+  useEffect(() => {
+    setVerbs(words)
+  }, [])
+  
   return (
     <VerbsContext.Provider value={{verbs}}>
     <div className="App">
