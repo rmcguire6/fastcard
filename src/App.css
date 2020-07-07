@@ -1,8 +1,18 @@
 .App {
   text-align: center;
 }
-
-li {
-  list-style-type: none;
-  text-align: center;
+.card {
+  padding: 1em;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+}
+.lists {
+  display: flex;
 }
