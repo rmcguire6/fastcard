@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import VerbsContext from '../context/verbs-context'
 import CardList from '../components/CardList'
 import '../App.css'
-
+import {randomizeArray} from '../utils'
 const Match= () => {
   const {verbs} = useContext(VerbsContext)
   const english = []
@@ -11,6 +11,7 @@ const Match= () => {
       english.push({id: item.id, word:item.eng})
       spanish.push({id: item.id, word: item.inf})
     })
+  randomizeArray(spanish)
 return (
   <div className="container">
     <h2>Match</h2>
