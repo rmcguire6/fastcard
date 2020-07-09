@@ -1,15 +1,29 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import { v4 as uuidv4} from 'uuid'
+import Card from '../components/Card'
 import '../App.css'
+
 const App = () => {
   const [matches, setMatches] = useState([])
   const [english, setEnglish] = useState('')
   const [spanish, setSpanish] = useState('')
+
+  useEffect(()=> {
+    const storedMatches = JSON.parse(localStorage.getItem('matches'))
+    if (storedMatches){
+      setMatches(storedMatches)
+    }
+  }, [])
+  useEffect(()=> {
+    localStorage.setItem('matches', JSON.stringify(matches))
+  }, [matches])
   
   const addMatch = (e) => {
     e.preventDefault()
     setMatches([
       ...matches,
       {
+        match_id: uuidv4(),
         english,
         spanish
       }
@@ -24,12 +38,13 @@ const App = () => {
       </header>
       <p>Learn faster with Fast Card</p>
       <h2>Match</h2>
-      {matches.map((match) => (
-        <div key={match.spanish}>
-          <h4>{`to ${match.english}`}</h4>
-          <h4>{match.spanish}</h4>
+      {matches.map((item) => (
+        <div key={item.match_id} className="list_row">
+          <Card word={item.spanish}/>
+          <Card word={`to ${item.english}`}/>
         </div>
       ))}
+
       <h3>Add a Word Match</h3>
       <form onSubmit={addMatch}>
         <div className="form">

@@ -9,7 +9,7 @@
   flex-direction: column;
   align-items: center;
 }
-.form {
+.form, .list_row {
   display: flex;
   justify-content: center;
 }
@@ -17,10 +17,4 @@
   margin: .5em;
   max-width: 40%;
 }
-.list {
-  display: flex;
-  flex-direction: column;
-}
-.lists {
-  display: flex;
-}
+
