@@ -1,8 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { v4 as uuidv4} from 'uuid'
 import '../App.css'
 
-const AddMatches =({dispatch}) => {
+import MatchesContext from '../context/matches-context'
+
+const AddMatches =() => {
+  const {dispatch} = useContext(MatchesContext)
   const [english, setEnglish] = useState('')
   const [spanish, setSpanish] = useState('')
 
@@ -19,7 +22,7 @@ const AddMatches =({dispatch}) => {
   }
 
 return (
-  <div>
+  <>
     <h3>Add a Word Match</h3>
         <form onSubmit={addMatch}>
             <div className="form">
@@ -34,7 +37,7 @@ return (
             </div>
             <button >Add a word pair</button>
         </form>
-  </div>
+  </>
   )
 }
 export {AddMatches as default}

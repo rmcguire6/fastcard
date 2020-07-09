@@ -3,6 +3,7 @@ import AddMatches from './AddMatches'
 import Card from '../components/Card'
 import '../App.css'
 
+import MatchesContext from '../context/matches-context'
 import matchesReducer from '../reducers/matches'
 
 const App = () => {
@@ -19,7 +20,9 @@ const App = () => {
   }, [matches])
   
   return (
-    <div className="App">
+
+    <MatchesContext.Provider value={{matches, dispatch}} >
+      <div className="App">
       <header>
        <h1>Fast Card</h1>
       </header>
@@ -31,8 +34,9 @@ const App = () => {
           <Card word={`to ${item.english}`}/>
         </div>
       ))}
-      <AddMatches dispatch={dispatch}/>
-    </div>
+      <AddMatches />
+      </div>
+    </MatchesContext.Provider >
   );
 }
 
