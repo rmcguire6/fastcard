@@ -9,6 +9,14 @@
   flex-direction: column;
   align-items: center;
 }
+.form {
+  display: flex;
+  justify-content: center;
+}
+.form_input{
+  margin: .5em;
+  max-width: 40%;
+}
 .list {
   display: flex;
   flex-direction: column;
