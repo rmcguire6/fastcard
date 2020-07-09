@@ -7,4 +7,5 @@ export function randomizeArray(list){
         list[i] = list[j]
         list[j] = temp
     }
+    return list
 }

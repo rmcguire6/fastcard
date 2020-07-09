@@ -1,6 +1,6 @@
-import React, {useEffect,useReducer, useState} from 'react'
+import React, {useEffect,useReducer} from 'react'
 import AddMatches from './AddMatches'
-import Card from '../components/Card'
+import Match from '../containers/Match'
 import '../App.css'
 
 import MatchesContext from '../context/matches-context'
@@ -10,9 +10,9 @@ const App = () => {
   const [matches, dispatch] = useReducer(matchesReducer, [])
 
   useEffect(()=> {
-    const storedMatches = JSON.parse(localStorage.getItem('matches'))
-    if (storedMatches){
-      dispatch({type: 'POPULATE_MATCHES', matches: storedMatches})
+    const matches = JSON.parse(localStorage.getItem('matches'))
+    if (matches){
+      dispatch({type: 'POPULATE_MATCHES', matches})
     }
   }, [])
   useEffect(()=> {
@@ -27,13 +27,7 @@ const App = () => {
        <h1>Fast Card</h1>
       </header>
       <p>Learn faster with Fast Card</p>
-      <h2>Match</h2>
-      {matches.map((item) => (
-        <div key={item.match_id} className="list_row">
-          <Card word={item.spanish}/>
-          <Card word={`to ${item.english}`}/>
-        </div>
-      ))}
+      < Match />
       <AddMatches />
       </div>
     </MatchesContext.Provider >

@@ -1,23 +1,26 @@
 import React, {useContext} from 'react'
-import VerbsContext from '../context/verbs-context'
-import CardList from '../components/CardList'
+import Card from '../components/Card'
+import MatchesContext from '../context/matches-context'
 import '../App.css'
-import {randomizeArray} from '../utils'
+
 const Match= () => {
-  const {verbs} = useContext(VerbsContext)
-  const english = []
-  const spanish = []
-    verbs.forEach((item) => {
-      english.push({id: item.id, word:item.eng})
-      spanish.push({id: item.id, word: item.inf})
-    })
-  randomizeArray(spanish)
+  const {matches} = useContext(MatchesContext)
 return (
   <div className="container">
     <h2>Match</h2>
     <div className="lists">
-    <CardList list={english} />
-    <CardList list={spanish} />
+    <div className="list">
+    {matches.map((match) => (
+      <Card key={match.match_id} word={`to ${match.english}`}/>
+    )
+    )}
+    </div>
+    <div className="list">
+     {matches.reverse().map((match) => (
+      <Card key={match.match_id} word={match.spanish}/>
+    )
+    )}
+    </div>
     </div>
   </div>
   )
