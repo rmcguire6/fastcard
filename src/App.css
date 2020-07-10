@@ -1,6 +1,9 @@
 .App {
   text-align: center;
 }
+.button {
+  padding: .5em;
+}
 .card {
   padding: 1em;
 }

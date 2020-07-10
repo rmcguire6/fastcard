@@ -35,7 +35,7 @@ return (
             <input name="spanish"  value={spanish} onChange={(e) => setSpanish(e.target.value)}/>
             </div>
             </div>
-            <button >Add a word pair</button>
+            <button className="button" >Add a word pair</button>
         </form>
   </>
   )
