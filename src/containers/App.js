@@ -1,10 +1,11 @@
 import React, {useEffect,useReducer} from 'react'
 import AddMatches from './AddMatches'
-import Match from '../containers/Match'
+import Match from './Match'
+import VerbForm from '../containers/VerbForm'
+import matchesReducer from '../reducers/matches'
+import MatchesContext from '../context/matches-context'
 import '../App.css'
 
-import MatchesContext from '../context/matches-context'
-import matchesReducer from '../reducers/matches'
 
 const App = () => {
   const [matches, dispatch] = useReducer(matchesReducer, [])
@@ -20,14 +21,14 @@ const App = () => {
   }, [matches])
   
   return (
-
     <MatchesContext.Provider value={{matches, dispatch}} >
       <div className="App">
       <header>
        <h1>Fast Card</h1>
       </header>
       <p>Learn faster with Fast Card</p>
-      < Match />
+      <Match/>
+      <VerbForm />
       <AddMatches />
       </div>
     </MatchesContext.Provider >
