@@ -1,4 +1,5 @@
 import React, {useState, useContext} from 'react';
+import {useHistory } from 'react-router-dom'
 import { v4 as uuidv4} from 'uuid'
 import '../App.css'
 
@@ -8,6 +9,7 @@ const AddMatches =() => {
   const {dispatch} = useContext(MatchesContext)
   const [english, setEnglish] = useState('')
   const [spanish, setSpanish] = useState('')
+  let history = useHistory()
 
   const addMatch = (e) => {
     e.preventDefault()
@@ -19,6 +21,7 @@ const AddMatches =() => {
         })
     setEnglish('')
     setSpanish('')
+    history.push("/")
   }
 
 return (

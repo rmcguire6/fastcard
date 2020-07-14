@@ -23,7 +23,7 @@ const VerbForm= () => {
   useEffect(()=> {
     setSpanishList(createSpanishTenses('hablar', 'ar'))
     setEnglishList(createEnglishTenses('speak'))
-  }, [spanishList, englishList])
+  }, [])
 
 return (
   <div className="container">

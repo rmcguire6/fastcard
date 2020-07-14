@@ -1,4 +1,5 @@
 import React, {useEffect,useReducer} from 'react'
+import { BrowserRouter as Router, Link,  Route, Switch } from 'react-router-dom'
 import AddMatches from './AddMatches'
 import Match from './Match'
 import VerbForm from '../containers/VerbForm'
@@ -22,17 +23,36 @@ const App = () => {
   
   return (
     <MatchesContext.Provider value={{matches, dispatch}} >
-      <div className="App">
-      <header>
-       <h1>Fast Card</h1>
-      </header>
-      <p>Learn faster with Fast Card</p>
-      <Match/>
-      <VerbForm />
-      <AddMatches />
-      </div>
-    </MatchesContext.Provider >
-  );
+    <Router>
+    <div className="App">
+    <nav>
+      <ul className="navlist">
+        <li>
+            <Link to ='/' className="navlist--item">Match Verbs</Link>
+        </li>
+        <li>
+          <Link to ='/match_forms' className="navlist--item">Match Forms</Link>
+        </li>
+        <li>
+          <Link to ='/add' className="navlist--item">Add A Word</Link>
+        </li>
+        </ul>
+    </nav>
+    <Switch>
+      <Route path='/match_forms'>
+        <VerbForm/>
+      </Route>
+      <Route path='/add'>
+        <AddMatches/>
+      </Route>
+      <Route path='/'>
+        <Match/>
+      </Route>
+    </Switch>
+    </div>
+    </Router>
+  </MatchesContext.Provider >
+  )
 }
 
 export {App as default}  ;
