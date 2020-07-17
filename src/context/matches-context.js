@@ -2,4 +2,4 @@ import React from 'react'
 
 const MatchesContext = React.createContext()
 
-export {MatchesContext as default}
+export { MatchesContext as default }
