@@ -11,6 +11,8 @@ const matchesReducer = (state, action) => {
           spanish: action.spanish
         }
       ]
+    case 'REMOVE_MATCH':
+      return state.filter((item) => item.spanish !== action.spanish)
     default:
       return state
   }

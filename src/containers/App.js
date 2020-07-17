@@ -1,6 +1,7 @@
 import React, { useEffect, useReducer } from 'react'
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
 import AddMatches from './AddMatches'
+import EditMatches from './EditMatches'
 import Match from './Match'
 import VerbForm from '../containers/VerbForm'
 import matchesReducer from '../reducers/matches'
@@ -33,7 +34,10 @@ const App = () => {
                 <Link to='/match_forms' className='navlist--item'>Match Forms</Link>
               </li>
               <li>
-                <Link to='/add' className='navlist--item'>Add A Word</Link>
+                <Link to='/add' className='navlist--item'>Add A Match</Link>
+              </li>
+              <li>
+                <Link to='/edit' className='navlist--item'>Remove A Match</Link>
               </li>
             </ul>
           </nav>
@@ -43,6 +47,9 @@ const App = () => {
             </Route>
             <Route path='/add'>
               <AddMatches />
+            </Route>
+            <Route path='/edit'>
+              <EditMatches />
             </Route>
             <Route path='/'>
               <Match />
