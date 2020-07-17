@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import MatchesContext from '../context/matches-context'
 import { v4 as uuidv4 } from 'uuid'
 import Card from '../components/Card'
 import '../App.css'
 
 const VerbForm = () => {
-  const modelMatch = { matchId: uuidv4, spanish: 'vivir', english: 'live' }
+  const { matches } = useContext(MatchesContext)
+  const modelMatch = matches[matches.length - 1] || { matchId: uuidv4, spanish: 'vivir', english: 'live' }
   const [spanishList, setSpanishList] = useState([])
   const [englishList, setEnglishList] = useState([])
   const createSpanishTenses = (inf, conj) => {
@@ -33,7 +35,7 @@ const VerbForm = () => {
   useEffect(() => {
     setSpanishList(createSpanishTenses(modelMatch.spanish, 'ir'))
     setEnglishList(createEnglishTenses(modelMatch.english))
-  }, [])
+  }, [modelMatch.english, modelMatch.spanish])
   const handleSpanishClick = (id) => {
     setSpanishList(spanishList.filter((item) => item.pers !== id))
   }
