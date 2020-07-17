@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 
-const Card =({word}) => {
-  return  (
+const Card = ({ word, id, handleClick }) => {
+  return (
     <div className='card'>
-     <button className="button">{word}</button>
+      <button className='button' onClick={() => handleClick(id)}>{word}</button>
     </div>
-    )
-  }
-export {Card as default}
+  )
+}
+export { Card as default }
