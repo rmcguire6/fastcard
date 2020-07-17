@@ -4,7 +4,7 @@ import Card from '../components/Card'
 import '../App.css'
 
 const VerbForm = () => {
-  const modelMatch = { match_id: uuidv4, spanish: 'vivir', english: 'live' }
+  const modelMatch = { matchId: uuidv4, spanish: 'vivir', english: 'live' }
   const [spanishList, setSpanishList] = useState([])
   const [englishList, setEnglishList] = useState([])
   const createSpanishTenses = (inf, conj) => {

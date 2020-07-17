@@ -10,10 +10,10 @@ const Match = () => {
 
   useEffect(() => {
     setEnglishList(matches.map((match) => {
-      return { match_id: match.match_id, english: match.english }
+      return { matchId: match.matchId, english: match.english }
     }))
     setSpanishList(matches.map((match) => {
-      return { match_id: match.match_id, spanish: match.spanish }
+      return { matchId: match.matchId, spanish: match.spanish }
     }))
   }, [matches])
 
@@ -25,8 +25,8 @@ const Match = () => {
           {spanishList.map((match) =>
             <Card
               key={match.spanish}
-              id={match.match_id}
-              handleClick={(id) => setSpanishList(spanishList.filter((match) => match.match_id !== id))}
+              id={match.matchId}
+              handleClick={(id) => setSpanishList(spanishList.filter((match) => match.matchId !== id))}
               word={match.spanish}
             />
           )}
@@ -36,8 +36,8 @@ const Match = () => {
           {englishList.map((match) =>
             <Card
               key={match.english}
-              id={match.match_id}
-              handleClick={(id) => setEnglishList(englishList.filter((list) => list.match.match_id !== id))}
+              id={match.matchId}
+              handleClick={(id) => setEnglishList(englishList.filter((list) => list.matchId !== id))}
               word={match.english}
             />
           )}
