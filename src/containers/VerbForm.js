@@ -6,7 +6,7 @@ import '../App.css'
 
 const VerbForm = () => {
   const { matches } = useContext(MatchesContext)
-  const modelMatch = matches[matches.length - 1] || { matchId: uuidv4, spanish: 'vivir', english: 'live' }
+  const modelMatch = matches[matches.length - 1] || { matchId: uuidv4, spanish: 'vivir', english: 'live', conj: 'ir' }
   const [spanishList, setSpanishList] = useState([])
   const [englishList, setEnglishList] = useState([])
   const createSpanishTenses = (inf, conj) => {
@@ -33,9 +33,9 @@ const VerbForm = () => {
       { pers: '3p', tense: `they ${inf}` }]
   }
   useEffect(() => {
-    setSpanishList(createSpanishTenses(modelMatch.spanish, 'ir'))
+    setSpanishList(createSpanishTenses(modelMatch.spanish, modelMatch.conj))
     setEnglishList(createEnglishTenses(modelMatch.english))
-  }, [modelMatch.english, modelMatch.spanish])
+  }, [modelMatch.english, modelMatch.spanish, modelMatch.conj])
   const handleSpanishClick = (id) => {
     setSpanishList(spanishList.filter((item) => item.pers !== id))
   }
