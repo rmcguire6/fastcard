@@ -1,6 +1,7 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String
+from flask_marshmallow import Marshmallow
 import os
 
 app = Flask(__name__)
@@ -9,10 +10,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'ma
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+ma = Marshmallow(app)
 
 @app.route('/')
 def homepage():
-    return('homepage')
+    return ('homepage')
 
 # database models
 
@@ -22,6 +24,13 @@ class Match(db.Model):
     match_id = Column(String, unique=True)
     spanish = Column(String, nullable=False)
     english = Column(String, nullable=False)
+
+class MatchSchema(ma.Schema):
+    class Meta:
+        fields = ('id', 'match_id', 'spanish', 'english')
+
+match_schema = MatchSchema()
+matches_schema = MatchSchema(many=True)
 
 if __name__ == '__main__':
     app.run()
