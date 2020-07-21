@@ -16,6 +16,12 @@ ma = Marshmallow(app)
 def homepage():
     return ('homepage')
 
+@app.route('/matches', methods=['GET'])
+def matches():
+    matches_list = Match.query.all()
+    result = matches_schema.dump(matches_list)
+    return jsonify(result)
+    
 # database models
 
 class Match(db.Model):
