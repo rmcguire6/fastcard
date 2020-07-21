@@ -30,13 +30,15 @@ class Match(db.Model):
     match_id = Column(String, unique=True)
     spanish = Column(String, nullable=False)
     english = Column(String, nullable=False)
+    conj = Column(String, default='')
 
 class MatchSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'match_id', 'spanish', 'english')
+        fields = ('id', 'match_id', 'spanish', 'english', 'conj')
 
 match_schema = MatchSchema()
 matches_schema = MatchSchema(many=True)
+
 
 if __name__ == '__main__':
     app.run()
