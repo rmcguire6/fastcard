@@ -2,6 +2,7 @@ import React, { useEffect, useReducer } from 'react'
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
 import AddMatches from './AddMatches'
 import EditMatches from './EditMatches'
+import CurrentMatches from '../components/CurrentMatches'
 import Match from './Match'
 import VerbForm from '../containers/VerbForm'
 import matchesReducer from '../reducers/matches'
@@ -10,7 +11,6 @@ import '../App.css'
 
 const App = () => {
   const [matches, dispatch] = useReducer(matchesReducer, [])
-
   useEffect(() => {
     const matches = JSON.parse(localStorage.getItem('matches'))
     if (matches) {
@@ -28,16 +28,19 @@ const App = () => {
           <nav>
             <ul className='navlist'>
               <li>
-                <Link to='/' className='navlist--item'>Match Verbs</Link>
+                <Link to='/' className='navlist--item'> Current Matches</Link>
+              </li>
+              <li>
+                <Link to='/matches' className='navlist--item'>Match Verbs</Link>
               </li>
               <li>
                 <Link to='/match_forms' className='navlist--item'>Match Forms</Link>
               </li>
               <li>
-                <Link to='/add' className='navlist--item'>Add A Match</Link>
+                <Link to='/add_match' className='navlist--item'>Add A Match</Link>
               </li>
               <li>
-                <Link to='/edit' className='navlist--item'>Remove A Match</Link>
+                <Link to='/remove_match' className='navlist--item'>Remove A Match</Link>
               </li>
             </ul>
           </nav>
@@ -45,14 +48,17 @@ const App = () => {
             <Route path='/match_forms'>
               <VerbForm />
             </Route>
-            <Route path='/add'>
+            <Route path='/add_match'>
               <AddMatches />
             </Route>
-            <Route path='/edit'>
+            <Route path='/remove_match'>
               <EditMatches />
             </Route>
-            <Route path='/'>
+            <Route path='/matches'>
               <Match />
+            </Route>
+            <Route path='/'>
+              <CurrentMatches />
             </Route>
           </Switch>
         </div>
