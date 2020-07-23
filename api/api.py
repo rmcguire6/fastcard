@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String
 from flask_marshmallow import Marshmallow
@@ -22,6 +22,29 @@ def matches():
     result = matches_schema.dump(matches_list)
     return jsonify(result)
     
+@app.route('/add_match', methods=['POST'])
+def add_match():
+    if request.is_json:
+        spanish = request.json['spanish']
+        english = request.json['english']
+        conj = request.json['conj']
+        match_id = request.json['match_id']
+    else:
+        spanish = request.form['spanish']
+        english = request.form['english']
+        conj = request.form['conj']
+        match_id = request.form['match_id']
+    test = Match.query.filter_by(spanish=spanish, english=english).first()
+    if test:
+        return jsonify(message='That spanish and english word match is already in the database.'), 409
+    else:
+        match = Match(spanish=spanish, english=english, match_id=match_id, conj=conj)
+        db.session.add(match)
+        db.session.commit()
+        return jsonify(message='That match was successfully added to the database.'), 201
+
+
+
 # database models
 
 class Match(db.Model):
@@ -38,7 +61,6 @@ class MatchSchema(ma.Schema):
 
 match_schema = MatchSchema()
 matches_schema = MatchSchema(many=True)
-
 
 if __name__ == '__main__':
     app.run()
