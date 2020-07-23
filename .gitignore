@@ -12,7 +12,7 @@
 /build
 
 #api
-__pycache__
+api/matches.db
 
 # misc
 .DS_Store
