@@ -43,6 +43,15 @@ def add_match():
         db.session.commit()
         return jsonify(message='That match was successfully added to the database.'), 201
 
+@app.route('/remove_match/<int:id>', methods=['DELETE'])
+def remove_match(id: int):
+    match = Match.query.filter_by(id=id).first()
+    if match:
+        db.session.delete(match)
+        db.session.commit()
+        return jsonify(message='That match was successfully removed from the database.'), 202
+    else:
+        return jsonify(message='That match was not in the database'), 404
 
 
 # database models
