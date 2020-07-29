@@ -21,7 +21,7 @@ def matches():
     matches_list = Match.query.all()
     result = matches_schema.dump(matches_list)
     return jsonify(result)
-    
+
 @app.route('/add_match', methods=['POST'])
 def add_match():
     if request.is_json:
@@ -34,7 +34,7 @@ def add_match():
         english = request.form['english']
         conj = request.form['conj']
         match_id = request.form['match_id']
-    test = Match.query.filter_by(spanish=spanish, english=english).first()
+    test = Match.query.filter_by(spanish=spanish).first()
     if test:
         return jsonify(message='That spanish and english word match is already in the database.'), 409
     else:
