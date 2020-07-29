@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 import MatchesContext from '../context/matches-context'
 import CurrentMatches from '../components/CurrentMatches'
+import { sendMatch } from '../utils/axios'
 import '../App.css'
 
 const AddMatches = () => {
@@ -10,15 +11,19 @@ const AddMatches = () => {
   const [english, setEnglish] = useState('')
   const [spanish, setSpanish] = useState('')
   const history = useHistory()
+  const matchId = uuidv4()
 
   const addMatch = (e) => {
     e.preventDefault()
+    const conj = spanish.slice(-2)
+    sendMatch({ matchId, english, spanish, conj })
     dispatch(
       {
         type: 'ADD_MATCH',
-        matchId: uuidv4(),
+        matchId,
         english,
-        spanish
+        spanish,
+        conj
       })
     setEnglish('')
     setSpanish('')

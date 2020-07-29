@@ -9,7 +9,7 @@ const matchesReducer = (state, action) => {
           matchId: action.matchId,
           english: action.english,
           spanish: action.spanish,
-          conj: action.spanish.slice(-2)
+          conj: action.conj
         }
       ]
     case 'REMOVE_MATCH':
