@@ -12,6 +12,10 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
+@app.before_first_request
+def create_tables():
+    db.create_all()
+
 @app.route('/')
 def homepage():
     return ('homepage')
@@ -74,6 +78,13 @@ class MatchSchema(ma.Schema):
 
 match_schema = MatchSchema()
 matches_schema = MatchSchema(many=True)
+
+# cli commands
+
+@app.cli.command('db_create')
+def db_create():
+    db.create_all()
+    print('Database created!')
 
 if __name__ == '__main__':
     app.run()
