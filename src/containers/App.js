@@ -1,5 +1,6 @@
 import React, { useEffect, useReducer } from 'react'
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
+import axios from 'axios'
 import AddMatches from './AddMatches'
 import EditMatches from './EditMatches'
 import CurrentMatches from '../components/CurrentMatches'
@@ -12,14 +13,12 @@ import '../App.css'
 const App = () => {
   const [matches, dispatch] = useReducer(matchesReducer, [])
   useEffect(() => {
-    const matches = JSON.parse(localStorage.getItem('matches'))
-    if (matches) {
-      dispatch({ type: 'POPULATE_MATCHES', matches })
-    }
+    axios.get('/matches')
+      .then(res => {
+        const matches = res.data.matches
+        dispatch({ type: 'POPULATE_MATCHES', matches })
+      })
   }, [])
-  useEffect(() => {
-    localStorage.setItem('matches', JSON.stringify(matches))
-  }, [matches])
 
   return (
     <MatchesContext.Provider value={{ matches, dispatch }}>

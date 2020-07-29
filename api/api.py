@@ -24,7 +24,7 @@ def homepage():
 def matches():
     matches_list = Match.query.all()
     result = matches_schema.dump(matches_list)
-    return jsonify(result)
+    return {"matches": result}
 
 @app.route('/add_match', methods=['POST'])
 def add_match():
