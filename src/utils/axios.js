@@ -4,7 +4,7 @@ async function sendMatch ({ spanish, english, matchId, conj }) {
   axios.post('/add_match', {
     spanish: spanish,
     english: english,
-    match_id: matchId,
+    matchId: matchId,
     conj: conj
   })
     .then(function (response) {

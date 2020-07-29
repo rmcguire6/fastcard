@@ -28,17 +28,17 @@ def add_match():
         spanish = request.json['spanish']
         english = request.json['english']
         conj = request.json['conj']
-        match_id = request.json['match_id']
+        matchId = request.json['matchId']
     else:
         spanish = request.form['spanish']
         english = request.form['english']
         conj = request.form['conj']
-        match_id = request.form['match_id']
+        matchId = request.form['matchId']
     test = Match.query.filter_by(spanish=spanish).first()
     if test:
         return jsonify(message='That spanish and english word match is already in the database.'), 409
     else:
-        match = Match(spanish=spanish, english=english, match_id=match_id, conj=conj)
+        match = Match(spanish=spanish, english=english, matchId=matchId, conj=conj)
         db.session.add(match)
         db.session.commit()
         return jsonify(message='That match was successfully added to the database.'), 201
@@ -63,14 +63,14 @@ def remove_match():
 class Match(db.Model):
     __tablename__ = 'matches'
     id = Column(Integer, primary_key=True)
-    match_id = Column(String, unique=True)
+    matchId = Column(String, unique=True)
     spanish = Column(String, nullable=False)
     english = Column(String, nullable=False)
     conj = Column(String, default='')
 
 class MatchSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'match_id', 'spanish', 'english', 'conj')
+        fields = ('id', 'matchId', 'spanish', 'english', 'conj')
 
 match_schema = MatchSchema()
 matches_schema = MatchSchema(many=True)
