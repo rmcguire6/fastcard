@@ -38,7 +38,7 @@ const Match = () => {
               key={match.english}
               id={match.matchId}
               handleClick={(id) => setEnglishList(englishList.filter((list) => list.matchId !== id))}
-              word={match.english}
+              word={`to ${match.english}`}
             />
           )}
         </div>
