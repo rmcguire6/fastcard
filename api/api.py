@@ -43,9 +43,13 @@ def add_match():
         db.session.commit()
         return jsonify(message='That match was successfully added to the database.'), 201
 
-@app.route('/remove_match/<int:id>', methods=['DELETE'])
-def remove_match(id: int):
-    match = Match.query.filter_by(id=id).first()
+@app.route('/remove_match', methods=['DELETE'])
+def remove_match():
+    if request.is_json:
+        spanish = request.json['spanish']
+    else:
+        spanish = request.form['spanish']
+    match = Match.query.filter_by(spanish=spanish).first()
     if match:
         db.session.delete(match)
         db.session.commit()

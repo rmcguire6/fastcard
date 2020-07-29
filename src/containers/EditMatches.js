@@ -2,13 +2,13 @@ import React, { useContext, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import MatchesContext from '../context/matches-context'
 import CurrentMatches from '../components/CurrentMatches'
+import { deleteMatch } from '../utils/axios'
 import '../App.css'
 
 const EditMatches = () => {
   const { dispatch } = useContext(MatchesContext)
   const [spanish, setSpanish] = useState('')
   const history = useHistory()
-
   const removeMatch = (e) => {
     e.preventDefault()
     dispatch(
@@ -16,6 +16,7 @@ const EditMatches = () => {
         type: 'REMOVE_MATCH',
         spanish: spanish
       })
+    deleteMatch(spanish)
     history.push('/')
   }
 

@@ -15,4 +15,20 @@ async function sendMatch ({ spanish, english, matchId, conj }) {
     })
 }
 
-export { sendMatch }
+async function deleteMatch (spanish) {
+  axios({
+    method: 'delete',
+    url: '/remove_match',
+    data: {
+      spanish: spanish
+    }
+  })
+    .then(function (response) {
+      console.log(response)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+}
+
+export { deleteMatch, sendMatch }
