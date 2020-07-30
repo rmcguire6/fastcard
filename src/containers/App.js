@@ -9,11 +9,12 @@ const App = () => {
   const [matches, dispatch] = useReducer(matchesReducer, [])
 
   useEffect(() => {
-    axios.get('/matches')
-      .then(res => {
-        const matches = res.data.matches
-        dispatch({ type: 'POPULATE_MATCHES', matches })
-      })
+    const fetchData = async () => {
+      const result = await axios.get('/matches')
+      const matches = result.data.matches
+      dispatch({ type: 'POPULATE_MATCHES', matches })
+    }
+    fetchData()
   }, [])
 
   return (
