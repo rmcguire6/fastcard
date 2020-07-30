@@ -7,9 +7,16 @@ const CurrentMatches = () => {
   return (
     <>
       <h3>Current Matches</h3>
-      {matches.map(match =>
-        <Row key={match.matchId} spanish={match.spanish} english={`to ${match.english}`} />
-      )}
+      {(matches.length > 0)
+        ? (
+          <>
+            {matches.map(match =>
+              <Row key={match.matchId} spanish={match.spanish} english={`to ${match.english}`} />
+            )}
+          </>
+        ) : (
+          <div>Please add matches</div>
+        )}
     </>
   )
 }
