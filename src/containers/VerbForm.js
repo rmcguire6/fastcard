@@ -6,7 +6,9 @@ import '../App.css'
 
 const VerbForm = () => {
   const { matches } = useContext(MatchesContext)
-  const modelMatch = matches[matches.length - 1] || { matchId: uuidv4, spanish: 'vivir', english: 'live', conj: 'ir' }
+  const length = matches.length -1
+  const randInt = Math.floor(Math.random() * Math.floor(length))
+  const modelMatch = matches[randInt] || { matchId: uuidv4, spanish: 'vivir', english: 'live', conj: 'ir' }
   const [spanishList, setSpanishList] = useState([])
   const [englishList, setEnglishList] = useState([])
   const createSpanishTenses = (inf, conj) => {
