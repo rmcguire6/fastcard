@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import MatchesContext from '../context/matches-context'
-import CurrentMatches from '../components/CurrentMatches'
+import Dictionary from '../components/Dictionary'
 import { deleteMatch } from '../utils/axios'
 import '../App.css'
 
@@ -32,7 +32,7 @@ const EditMatches = () => {
         </div>
         <button className='button'>Remove a word pair</button>
       </form>
-      <CurrentMatches />
+      <Dictionary />
     </>
   )
 }

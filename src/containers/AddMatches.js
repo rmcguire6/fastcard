@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 import MatchesContext from '../context/matches-context'
-import CurrentMatches from '../components/CurrentMatches'
+import Dictionary from '../components/Dictionary'
 import { sendMatch } from '../utils/axios'
 import '../App.css'
 
@@ -46,7 +46,7 @@ const AddMatches = () => {
         </div>
         <button className='button'>Add a word pair</button>
       </form>
-      <CurrentMatches />
+      <Dictionary />
     </>
   )
 }

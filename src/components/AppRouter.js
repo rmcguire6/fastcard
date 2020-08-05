@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
 import AddMatches from '../containers/AddMatches'
 import EditMatches from '../containers/EditMatches'
-import CurrentMatches from './CurrentMatches'
+import Dictionary from './Dictionary'
 import Match from '../containers/Match'
 import VerbForm from '../containers/VerbForm'
 
@@ -13,7 +13,7 @@ const AppRouter = () => {
         <nav>
           <ul className='navlist'>
             <li>
-              <Link to='/' className='navlist--item'> Current Matches</Link>
+              <Link to='/' className='navlist--item'> Dictionary</Link>
             </li>
             <li>
               <Link to='/matches' className='navlist--item'>Match Verbs</Link>
@@ -43,7 +43,7 @@ const AppRouter = () => {
             <Match />
           </Route>
           <Route path='/'>
-            <CurrentMatches />
+            <Dictionary />
           </Route>
         </Switch>
       </div>

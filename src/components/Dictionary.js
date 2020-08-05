@@ -2,11 +2,11 @@ import React, { useContext } from 'react'
 import MatchesContext from '../context/matches-context'
 import Row from './Row'
 
-const CurrentMatches = () => {
+const Dictionary = () => {
   const { matches } = useContext(MatchesContext)
   return (
     <>
-      <h3>Current Matches</h3>
+      <h3>Dictionary</h3>
       {(matches.length > 0)
         ? (
           <>
@@ -20,4 +20,4 @@ const CurrentMatches = () => {
     </>
   )
 }
-export { CurrentMatches as default }
+export { Dictionary as default }
