@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import MatchesContext from '../context/matches-context'
 import { v4 as uuidv4 } from 'uuid'
+import createRandomList from '../utils/createRandomList'
 import Card from '../components/Card'
 import '../App.css'
 
@@ -36,14 +37,16 @@ const VerbForm = () => {
   }
   useEffect(() => {
     setSpanishList(createSpanishTenses(modelMatch.spanish, modelMatch.conj))
-    setEnglishList(createEnglishTenses(modelMatch.english))
-  }, [modelMatch.english, modelMatch.spanish, modelMatch.conj])
+    setEnglishList(createRandomList(createEnglishTenses(modelMatch.english)))
+  // eslint-disable-next-line
+  }, [modelMatch.spanish])
   const handleSpanishClick = (id) => {
     setSpanishList(spanishList.filter((item) => item.pers !== id))
   }
   const handleEnglishClick = (id) => {
     setEnglishList(englishList.filter((item) => item.pers !== id))
   }
+
   return (
     <div className='container'>
       <h2>Match the Verb Forms</h2>

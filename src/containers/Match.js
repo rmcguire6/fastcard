@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import createRandomList from '../utils/createRandomList'
 import MatchesContext from '../context/matches-context'
 import Card from '../components/Card'
 import '../App.css'
@@ -16,7 +17,8 @@ const Match = () => {
       return { matchId: match.matchId, spanish: match.spanish }
     }))
   }, [matches])
-
+  
+  const shuffled = createRandomList(englishList)
   return (
     <div className='container'>
       <h2>Match</h2>
@@ -33,7 +35,7 @@ const Match = () => {
         </div>
         <br />
         <div className='list'>
-          {englishList.map((match) =>
+          {shuffled.map((match) =>
             <Card
               key={match.english}
               id={match.matchId}
