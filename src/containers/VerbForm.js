@@ -7,11 +7,15 @@ import '../App.css'
 
 const VerbForm = () => {
   const { matches } = useContext(MatchesContext)
-  const length = matches.length -1
-  const randInt = Math.floor(Math.random() * Math.floor(length))
-  const modelMatch = matches[randInt] || { matchId: uuidv4, spanish: 'vivir', english: 'live', conj: 'ir' }
+  const [modelMatch, setModelMatch] = useState({matchId: uuidv4, spanish: 'vivir', english: 'live', conj: 'ir'})
   const [spanishList, setSpanishList] = useState([])
   const [englishList, setEnglishList] = useState([])
+  useEffect(() => {
+    const length = matches.length -1
+    const randInt = Math.floor(Math.random() * Math.floor(length))
+    setModelMatch(matches[randInt])
+    // eslint-disable-next-line
+  }, [])
   const createSpanishTenses = (inf, conj) => {
     let spanishTenses = []
     const stem = inf.slice(0, inf.length - 1)
