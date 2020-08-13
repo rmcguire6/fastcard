@@ -26,7 +26,7 @@ const EditMatches = () => {
       <form onSubmit={removeMatch}>
         <div className='form'>
           <div className='form_input container'>
-            <label htmlFor='spanish'>Type Spanish Word to Remove Match</label>
+            <label htmlFor='spanish' className='row-text'>Type Spanish Word to Remove Match</label>
             <input name='spanish' value={spanish} onChange={(e) => setSpanish(e.target.value)} />
           </div>
         </div>

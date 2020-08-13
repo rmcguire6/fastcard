@@ -3,7 +3,7 @@ import React from 'react'
 const Row = ({ spanish, english }) => {
   return (
     <div className='row'>
-      <p>{spanish}</p><p>{english}</p>
+      <p className='row-text'>{spanish}</p><p className='row-text'>{english}</p>
     </div>
   )
 }
