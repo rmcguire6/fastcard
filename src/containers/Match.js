@@ -7,8 +7,8 @@ const Match = () => {
   const { matches } = useContext(MatchesContext)
   const [spanishList, setSpanishList] = useState([])
   const [englishList, setEnglishList] = useState([])
-  const [history, setHistory] = useState([])
-
+  const [englishId, setEnglishId] = useState('')
+  const [spanishId, setSpanishId] = useState('')
   useEffect(() => {
     setEnglishList(matches.map((match) => {
       return { matchId: match.matchId, english: match.english }
@@ -20,12 +20,12 @@ const Match = () => {
   
   const handleEnglishClick =(item) => {
     const newId = item.matchId
-    setHistory(history.concat(newId))
+    setEnglishId(newId)
     setEnglishList(englishList.filter((match) => match.matchId !== item.matchId))
   }
   const handleSpanishClick =(item) => {
     const newId = item.matchId
-    setHistory(history.concat(newId))
+    setSpanishId(newId)
     setSpanishList(spanishList.filter((match) => match.matchId !== item.matchId))
   }
   const shuffled = createRandomList(englishList)
@@ -50,6 +50,9 @@ const Match = () => {
           ))}
         </div>
       </div>
+      <h3>Ids</h3>
+      <p>{englishId}</p><p>{spanishId}</p>
+      <p>Do the Ids Match</p>
     </div>
   )
 }
